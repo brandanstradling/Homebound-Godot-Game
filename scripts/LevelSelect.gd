@@ -2,6 +2,9 @@ extends Control
 
 @onready var grid = $LevelPanel/LevelContainer/GridContainer
 @onready var test_grid = $TestPanel/TestContainer/GridContainer
+@onready var sfx_player: AudioStreamPlayer = $AudioStreamPlayer
+
+@export var sfx_click_high: AudioStream
 
 const LEVEL_BUTTON = preload("res://scenes/menus/LevelButton.tscn")
 
@@ -23,10 +26,13 @@ func _ready():
 		if GameProgress.is_unlocked(i):
 			var level_index = i
 			btn.pressed.connect(func():
+				sfx_player.stream = sfx_click_high
+				sfx_player.play()
 				get_tree().change_scene_to_file("res://scenes/levels/Level_%d.tscn" % level_index)
 			)
 		else:
 			btn.disabled = true
+		btn.disabled = true  # TEMP: disable all levels during testing
 		grid.add_child(btn)
 
 	# Test levels
@@ -36,9 +42,13 @@ func _ready():
 		btn.text = path.get_file().get_basename().replace("Test", "")
 		var scene_path = path
 		btn.pressed.connect(func():
+			sfx_player.stream = sfx_click_high
+			sfx_player.play()
 			get_tree().change_scene_to_file(scene_path)
 		)
 		test_grid.add_child(btn)
 
 func _on_back_button_pressed():
+	sfx_player.stream = sfx_click_high
+	sfx_player.play()
 	get_tree().change_scene_to_file("res://scenes/menus/MainMenu.tscn")

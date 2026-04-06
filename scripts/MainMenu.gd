@@ -1,21 +1,32 @@
 extends Control
 
 @onready var settings_menu = $SettingsMenu
+@onready var sfx_player: AudioStreamPlayer = $AudioStreamPlayer
+
+@export var sfx_click_high: AudioStream
 
 func _ready():
 	MusicManager.play(MusicManager.music_main_menu)
 	settings_menu.hide()
 
 func _on_play_button_pressed():
+	sfx_player.stream = sfx_click_high
+	sfx_player.play()
 	get_tree().change_scene_to_file("res://scenes/menus/LevelSelect.tscn")
 
 func _on_settings_button_pressed():
+	sfx_player.stream = sfx_click_high
+	sfx_player.play()
 	settings_menu.show()
 
 func _on_back_button_pressed():
+	sfx_player.stream = sfx_click_high
+	sfx_player.play()
 	settings_menu.hide()
 
 func _on_quit_button_pressed():
+	sfx_player.stream = sfx_click_high
+	sfx_player.play()
 	get_tree().quit()
 
 func _on_master_volume_slider_value_changed(value):

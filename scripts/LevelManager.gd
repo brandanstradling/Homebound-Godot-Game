@@ -10,7 +10,8 @@ extends Node
 @onready var sfx_player = $"../AudioStreamPlayer"
 
 @export var current_level: int = 0
-@export var sfx_select: AudioStream
+@export var sfx_click_high: AudioStream
+@export var sfx_click_low: AudioStream
 
 var selected_animal: Animal = null
 var turn: int = 1
@@ -28,13 +29,18 @@ func _ready():
 	pause_menu.hide()
 	win_screen.hide()
 
+func play_sfx(stream: AudioStream):
+	if stream == null:
+		return
+	sfx_player.stream = stream
+	sfx_player.play()
+
 func select_animal(animal: Animal):
 	if selected_animal != null:
 		selected_animal.set_selected(false)
 	selected_animal = animal
 	selected_animal.set_selected(true)
-	sfx_player.stream = sfx_select
-	sfx_player.play()
+	play_sfx(sfx_click_high)
 
 func _on_animal_reached_den(animal: Animal):
 	# Deselect if this was the selected animal
@@ -49,6 +55,7 @@ func _on_animal_reached_den(animal: Animal):
 
 func show_win_screen():
 	GameProgress.complete_level(current_level)
+	MusicManager.play_sting(MusicManager.music_win)
 	get_tree().paused = true
 	win_screen.show()
 
@@ -68,6 +75,7 @@ func _input(event):
 		selected_animal.rotate_facing()
 
 func toggle_pause():
+	play_sfx(sfx_click_high)
 	if pause_menu.visible:
 		pause_menu.hide()
 		get_tree().paused = false
@@ -76,14 +84,17 @@ func toggle_pause():
 		get_tree().paused = true
 
 func restart_level():
+	play_sfx(sfx_click_high)
 	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 func go_to_main_menu():
+	play_sfx(sfx_click_high)
 	get_tree().paused = false
 	get_tree().change_scene_to_file("res://scenes/menus/MainMenu.tscn")
 
 func toggle_settings():
+	play_sfx(sfx_click_high)
 	if settings_menu.visible:
 		settings_menu.hide()
 		pause_menu.show()
@@ -111,12 +122,12 @@ func _on_back_button_pressed():
 	toggle_settings()
 
 func _on_next_level_button_pressed():
+	play_sfx(sfx_click_high)
 	var next_level = current_level + 1
 	get_tree().paused = false
-	if next_level <= GameProgress.TOTAL_LEVELS and next_level > 0:
+	if next_level <= GameProgress.TOTAL_LEVELS and next_level > 1:
 		get_tree().change_scene_to_file("res://scenes/levels/Level_%d.tscn" % next_level)
 	else:
-		# No more levels — go back to level select
 		get_tree().change_scene_to_file("res://scenes/menus/LevelSelect.tscn")
 
 func _on_master_volume_slider_value_changed(value):

@@ -1,7 +1,8 @@
-[gd_scene load_steps=100 format=4 uid="uid://dg4cof25y0a6h"]
+[gd_scene load_steps=101 format=4 uid="uid://dg4cof25y0a6h"]
 
 [ext_resource type="Script" uid="uid://bms6gdidyyaf6" path="res://scripts/Wolf.gd" id="1_xmti0"]
 [ext_resource type="TileSet" uid="uid://bhhph45dx3gho" path="res://assets/world/Main.tres" id="2_fw4x3"]
+[ext_resource type="AudioStream" uid="uid://cmmtfoeitnilw" path="res://assets/audio/Low Click.wav" id="2_yi1hl"]
 [ext_resource type="Shader" uid="uid://do56p3nn1ha8t" path="res://resources/Outline.gdshader" id="3_0rvxd"]
 [ext_resource type="Texture2D" uid="uid://b67j42l1cf346" path="res://assets/wolf/wolf_howl.png" id="4_0rvxd"]
 [ext_resource type="Texture2D" uid="uid://18ta1447ieps" path="res://assets/wolf/wolf_idle.png" id="4_yi1hl"]
@@ -708,6 +709,7 @@ animations = [{
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_xmti0")
+sfx_click_low = ExtResource("2_yi1hl")
 
 [node name="TestingTiles" type="TileMapLayer" parent="."]
 visible = false

@@ -1,8 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://d381yfnr7ct3k"]
+[gd_scene load_steps=4 format=3 uid="uid://d381yfnr7ct3k"]
 
 [ext_resource type="Script" uid="uid://bl4csn0j40fx" path="res://scripts/MusicManager.gd" id="1_k17rw"]
+[ext_resource type="AudioStream" uid="uid://bxan2ym3erl6j" path="res://assets/audio/Gentle Breeze.ogg" id="2_mvbrv"]
+[ext_resource type="AudioStream" uid="uid://boy3hugpt3hl3" path="res://assets/audio/Level Complete.wav" id="3_ppk7c"]
 
 [node name="MusicManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_k17rw")
+music_main_menu = ExtResource("2_mvbrv")
+music_level_select = ExtResource("2_mvbrv")
+music_level = ExtResource("2_mvbrv")
+music_win = ExtResource("3_ppk7c")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+bus = &"Music"
+
+[node name="StingPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"

@@ -1,8 +1,9 @@
-[gd_scene load_steps=151 format=4 uid="uid://dylkrmdks0gqp"]
+[gd_scene load_steps=152 format=4 uid="uid://dylkrmdks0gqp"]
 
 [ext_resource type="Script" uid="uid://difilpyvt3wwy" path="res://scripts/Deer.gd" id="1_a8q6c"]
 [ext_resource type="TileSet" uid="uid://bhhph45dx3gho" path="res://assets/world/Main.tres" id="1_el6ex"]
 [ext_resource type="Shader" uid="uid://do56p3nn1ha8t" path="res://resources/Outline.gdshader" id="2_a8q6c"]
+[ext_resource type="AudioStream" uid="uid://cmmtfoeitnilw" path="res://assets/audio/Low Click.wav" id="2_csxub"]
 [ext_resource type="Texture2D" uid="uid://d0do8wfundfbe" path="res://assets/deer/deer_idle.png" id="3_dfhrx"]
 [ext_resource type="Texture2D" uid="uid://b0yaf7mkjilw5" path="res://assets/deer/deer_jump.png" id="4_obb6r"]
 [ext_resource type="Texture2D" uid="uid://fi0ntdlve7ne" path="res://assets/world/den_indicator.png" id="6_dfhrx"]
@@ -1051,6 +1052,7 @@ animations = [{
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_a8q6c")
+sfx_click_low = ExtResource("2_csxub")
 
 [node name="TestingTiles" type="TileMapLayer" parent="."]
 visible = false

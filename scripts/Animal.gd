@@ -10,6 +10,7 @@ extends Node2D
 @export var den_position: Vector2i
 @export var sfx_move: AudioStream
 @export var sfx_arrive: AudioStream
+@export var sfx_click_low: AudioStream
 
 signal animal_selected(animal)
 signal reached_den(animal)
@@ -18,6 +19,17 @@ var grid_pos: Vector2i
 var is_selected: bool = false
 var is_moving: bool = false
 var is_at_den: bool = false
+
+# Direction lookup tables
+const FACING_TO_DIR = {
+	Vector2i(1, 0):  "SE",
+	Vector2i(0, 1):  "SW",
+	Vector2i(-1, 0): "NW",
+	Vector2i(0, -1): "NE"
+}
+const ROTATE_ORDER = [
+	Vector2i(1, 0), Vector2i(0, 1), Vector2i(-1, 0), Vector2i(0, -1)
+]
 
 func _ready():
 	grid_pos = start_position
@@ -49,7 +61,9 @@ func on_reached_den():
 
 func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton and event.pressed:
-		if not is_at_den:
+		if is_at_den:
+			play_sfx(sfx_click_low)
+		else:
 			animal_selected.emit(self)
 
 func set_selected(selected: bool):
@@ -60,30 +74,17 @@ func set_selected(selected: bool):
 func rotate_facing():
 	if is_moving:
 		return
-
-	if facing == Vector2i(1, 0):
-		facing = Vector2i(0, 1)
-	elif facing == Vector2i(0, 1):
-		facing = Vector2i(-1, 0)
-	elif facing == Vector2i(-1, 0):
-		facing = Vector2i(0, -1)
-	else:
-		facing = Vector2i(1, 0)
+	var idx = (ROTATE_ORDER.find(facing) + 1) % ROTATE_ORDER.size()
+	facing = ROTATE_ORDER[idx]
 	play_animation("idle")
 
 func get_direction_name() -> String:
-	if facing == Vector2i(1, 0):
-		return "SE"
-	elif facing == Vector2i(0, 1):
-		return "SW"
-	elif facing == Vector2i(-1, 0):
-		return "NW"
-	else:
-		return "NE"
+	return FACING_TO_DIR.get(facing, "NE")
 
 func play_animation(state: String):
 	var new_anim = get_direction_name() + "_" + state
 	if sprite.animation.ends_with("_" + state):
+		# Preserve frame when only direction changes
 		var current_frame = sprite.frame
 		sprite.play(new_anim)
 		sprite.frame = current_frame

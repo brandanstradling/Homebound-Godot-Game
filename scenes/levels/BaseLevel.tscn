@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://dup41avjh5st1"]
+[gd_scene load_steps=9 format=4 uid="uid://dup41avjh5st1"]
 
 [ext_resource type="Script" uid="uid://d15ndqulbav8q" path="res://scripts/LevelManager.gd" id="1_rvslj"]
 [ext_resource type="TileSet" uid="uid://bhhph45dx3gho" path="res://assets/world/Main.tres" id="2_0bbpv"]
+[ext_resource type="AudioStream" uid="uid://dg1h040b6w546" path="res://assets/audio/High Click.wav" id="2_erm5t"]
 [ext_resource type="Theme" uid="uid://b3slgs6564syx" path="res://resources/theme/main_theme.tres" id="3_751m3"]
+[ext_resource type="AudioStream" uid="uid://cmmtfoeitnilw" path="res://assets/audio/Low Click.wav" id="3_uyfon"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_751m3"]
 bg_color = Color(0, 0, 0, 0.50980395)
@@ -18,6 +20,8 @@ y_sort_enabled = true
 
 [node name="LevelManager" type="Node" parent="."]
 script = ExtResource("1_rvslj")
+sfx_click_high = ExtResource("2_erm5t")
+sfx_click_low = ExtResource("3_uyfon")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -307,6 +311,7 @@ layout_mode = 2
 text = "Main Menu"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 bus = &"SFX"
 
 [connection signal="pressed" from="UI/BottomBar/RestartButton" to="LevelManager" method="_on_restart_button_pressed"]
