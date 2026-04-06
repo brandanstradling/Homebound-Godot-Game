@@ -28,7 +28,10 @@ func get_animal_at(pos: Vector2i) -> Animal:
 	var level = get_tree().get_first_node_in_group("level")
 	if level == null:
 		return null
-	for child in level.get_children():
+	var animals_node = level.get_node_or_null("Animals")
+	if animals_node == null:
+		return null
+	for child in animals_node.get_children():   # ← searches Animals/*
 		if child is Animal and child.grid_pos == pos:
 			return child
 	return null

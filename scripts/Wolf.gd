@@ -35,7 +35,6 @@ func activate():
 		is_moving = false
 		play_animation("idle")
 		howl()
-		check_den()
 	)
 
 func howl():
@@ -47,6 +46,7 @@ func howl():
 			neighbors.append({"animal": animal, "dir": dir})
 
 	if neighbors.is_empty():
+		check_den()
 		return
 
 	play_animation("howl")
@@ -63,3 +63,5 @@ func howl():
 			var tween = create_tween()
 			tween.tween_property(animal, "global_position", GridManager.grid_to_world(push_target), 0.2)
 			tween.tween_callback(func(): animal.check_den())
+
+	check_den()
