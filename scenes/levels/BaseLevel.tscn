@@ -57,9 +57,10 @@ y_sort_enabled = true
 position = Vector2(0, -8)
 tile_set = ExtResource("2_0bbpv")
 
-[node name="WallExtensions" type="TileMapLayer" parent="Grid"]
-z_index = -1
+[node name="Breakables" type="TileMapLayer" parent="Grid"]
+z_index = 1
 y_sort_enabled = true
+position = Vector2(0, -8)
 tile_set = ExtResource("2_0bbpv")
 
 [node name="WallDecor" type="TileMapLayer" parent="Grid"]

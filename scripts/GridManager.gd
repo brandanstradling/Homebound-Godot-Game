@@ -2,10 +2,18 @@ extends Node
 
 var ground_layer: TileMapLayer
 var wall_layer: TileMapLayer
+var breakable_layer: TileMapLayer
 
-func initialize(ground: TileMapLayer, walls: TileMapLayer):
+func initialize(ground: TileMapLayer, walls: TileMapLayer, breakables: TileMapLayer):
 	ground_layer = ground
 	wall_layer = walls
+	breakable_layer = breakables
+
+func is_breakable(pos: Vector2i) -> bool:
+	return breakable_layer.get_cell_source_id(pos) != -1
+
+func break_tile(pos: Vector2i):
+	breakable_layer.erase_cell(pos)
 
 func is_walkable(pos: Vector2i) -> bool:
 	if not is_ground(pos):

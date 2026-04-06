@@ -2,6 +2,7 @@ extends Node
 
 @onready var ground_layer = $"../Grid/Ground"
 @onready var wall_layer = $"../Grid/Walls"
+@onready var breakable_layer = $"../Grid/Breakables"
 @onready var level_label = $"../UI/TopBar/LevelLabel"
 @onready var turn_label = $"../UI/TopBar/TurnLabel"
 @onready var pause_menu = $"../UI/PauseMenu"
@@ -15,9 +16,10 @@ extends Node
 
 var selected_animal: Animal = null
 var turn: int = 1
+var _breakable_tween: Tween
 
 func _ready():
-	GridManager.initialize(ground_layer, wall_layer)
+	GridManager.initialize(ground_layer, wall_layer, breakable_layer)
 
 	for animal in $"../Animals".get_children():
 		animal.animal_selected.connect(select_animal)
@@ -35,12 +37,39 @@ func play_sfx(stream: AudioStream):
 	sfx_player.stream = stream
 	sfx_player.play()
 
+func _start_breakable_hint():
+	_stop_breakable_hint()
+	_breakable_tween = create_tween().set_loops()
+	_breakable_tween.tween_property(breakable_layer, "modulate", Color(1.15, 1.05, 0.85), 1.0)\
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	_breakable_tween.tween_property(breakable_layer, "modulate", Color(1.0, 1.0, 1.0), 1.0)\
+		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+func _stop_breakable_hint():
+	if _breakable_tween:
+		_breakable_tween.kill()
+		_breakable_tween = null
+	breakable_layer.modulate = Color.WHITE
+
 func select_animal(animal: Animal):
+	if selected_animal == animal:
+		# Re-click: deselect
+		selected_animal.set_selected(false)
+		selected_animal = null
+		play_sfx(sfx_click_low)
+		_stop_breakable_hint()
+		return
+
 	if selected_animal != null:
 		selected_animal.set_selected(false)
 	selected_animal = animal
 	selected_animal.set_selected(true)
 	play_sfx(sfx_click_high)
+
+	if animal is Boar:
+		_start_breakable_hint()
+	else:
+		_stop_breakable_hint()
 
 func _on_animal_reached_den(animal: Animal):
 	# Deselect if this was the selected animal
