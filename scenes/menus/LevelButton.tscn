@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjtxemjojmpoq"]
+
+[ext_resource type="Theme" uid="uid://b3slgs6564syx" path="res://theme/main_theme.tres" id="1_027nn"]
+[ext_resource type="Texture2D" uid="uid://br0lremrdvuu" path="res://assets/ui/sprite_sheet.png" id="1_gbcid"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b5eqo"]
+atlas = ExtResource("1_gbcid")
+region = Rect2(242, 66, 12, 12)
+
+[node name="LevelButton" type="Button"]
+offset_right = 10.0
+offset_bottom = 12.0
+theme = ExtResource("1_027nn")
+text = " "
+
+[node name="Checkmark" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_top = -4.0
+offset_right = 4.0
+offset_bottom = 8.0
+grow_horizontal = 0
+texture = SubResource("AtlasTexture_b5eqo")

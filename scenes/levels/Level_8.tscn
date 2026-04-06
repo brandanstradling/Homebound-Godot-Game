@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dem2s4ssiis4e"]
+
+[ext_resource type="PackedScene" uid="uid://dup41avjh5st1" path="res://scenes/levels/BaseLevel.tscn" id="1_udyg4"]
+
+[node name="BaseLevel" instance=ExtResource("1_udyg4")]
+
+[node name="LevelManager" parent="." index="0"]
+current_level = 8
