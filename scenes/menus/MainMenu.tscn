@@ -1,7 +1,7 @@
 [gd_scene load_steps=147 format=4 uid="uid://d2f8xun6lhe82"]
 
 [ext_resource type="Script" uid="uid://dbyly1rcpcp2m" path="res://scripts/MainMenu.gd" id="1_bqojv"]
-[ext_resource type="Theme" uid="uid://b3slgs6564syx" path="res://theme/main_theme.tres" id="2_ldf1p"]
+[ext_resource type="Theme" uid="uid://b3slgs6564syx" path="res://resources/theme/main_theme.tres" id="2_ldf1p"]
 [ext_resource type="TileSet" uid="uid://bhhph45dx3gho" path="res://assets/world/Main.tres" id="3_ldf1p"]
 [ext_resource type="Shader" uid="uid://do56p3nn1ha8t" path="res://resources/Outline.gdshader" id="4_cty7a"]
 [ext_resource type="Texture2D" uid="uid://d0do8wfundfbe" path="res://assets/deer/deer_idle.png" id="5_147xw"]

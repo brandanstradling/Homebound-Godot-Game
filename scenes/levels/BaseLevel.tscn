@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d15ndqulbav8q" path="res://scripts/LevelManager.gd" id="1_rvslj"]
 [ext_resource type="TileSet" uid="uid://bhhph45dx3gho" path="res://assets/world/Main.tres" id="2_0bbpv"]
-[ext_resource type="Theme" uid="uid://b3slgs6564syx" path="res://theme/main_theme.tres" id="3_751m3"]
+[ext_resource type="Theme" uid="uid://b3slgs6564syx" path="res://resources/theme/main_theme.tres" id="3_751m3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_751m3"]
 bg_color = Color(0, 0, 0, 0.50980395)

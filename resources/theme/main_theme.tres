@@ -1,0 +1,82 @@
+[gd_resource type="Theme" load_steps=19 format=3 uid="uid://b3slgs6564syx"]
+
+[ext_resource type="FontVariation" uid="uid://bjf5j7b6aglhf" path="res://resources/theme/font.tres" id="1_adhqp"]
+[ext_resource type="StyleBox" uid="uid://230o1pm2os8n" path="res://resources/theme/button_disabled.tres" id="1_os614"]
+[ext_resource type="StyleBox" uid="uid://dbgv4xvxuicsx" path="res://resources/theme/button_normal.tres" id="2_dut6s"]
+[ext_resource type="StyleBox" uid="uid://dp2s2gmvuw5yw" path="res://resources/theme/button_hover.tres" id="3_adhqp"]
+[ext_resource type="StyleBox" uid="uid://bgm5vj8s746a" path="res://resources/theme/button_pressed.tres" id="3_cibxr"]
+[ext_resource type="StyleBox" uid="uid://dhmsqj6awajsv" path="res://resources/theme/button_hover_pressed.tres" id="4_t4k2v"]
+[ext_resource type="Texture2D" uid="uid://br0lremrdvuu" path="res://assets/ui/sprite_sheet.png" id="7_t4k2v"]
+[ext_resource type="StyleBox" uid="uid://cpj7h2er7xav6" path="res://resources/theme/hslider_slider.tres" id="8_m8g5i"]
+[ext_resource type="StyleBox" uid="uid://cukny1v75ronr" path="res://resources/theme/panel.tres" id="9_a7tdx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m8g5i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftk8o"]
+atlas = ExtResource("7_t4k2v")
+region = Rect2(430, 68, 34, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xa5k"]
+atlas = ExtResource("7_t4k2v")
+region = Rect2(432, 102, 34, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7tdx"]
+atlas = ExtResource("7_t4k2v")
+region = Rect2(247, 148, 18, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75705"]
+atlas = ExtResource("7_t4k2v")
+region = Rect2(247, 164, 18, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6sc48"]
+atlas = ExtResource("7_t4k2v")
+region = Rect2(247, 132, 18, 8)
+
+[sub_resource type="DPITexture" id="DPITexture_ftk8o"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"4\" height=\"8\"><path fill=\"#fff\" fill-opacity=\".25\" d=\"M1 0h2v16H1z\"/></svg>
+"
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_75705"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6sc48"]
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 1
+Button/fonts/font = ExtResource("1_adhqp")
+Button/styles/disabled = ExtResource("1_os614")
+Button/styles/focus = SubResource("StyleBoxEmpty_m8g5i")
+Button/styles/hover = ExtResource("3_adhqp")
+Button/styles/hover_pressed = ExtResource("4_t4k2v")
+Button/styles/normal = ExtResource("2_dut6s")
+Button/styles/pressed = ExtResource("3_cibxr")
+CheckButton/icons/checked = SubResource("AtlasTexture_ftk8o")
+CheckButton/icons/unchecked = SubResource("AtlasTexture_4xa5k")
+HSlider/constants/center_grabber = 0
+HSlider/constants/grabber_offset = 0
+HSlider/constants/tick_offset = 0
+HSlider/icons/grabber = SubResource("AtlasTexture_a7tdx")
+HSlider/icons/grabber_disabled = SubResource("AtlasTexture_75705")
+HSlider/icons/grabber_highlight = SubResource("AtlasTexture_6sc48")
+HSlider/icons/tick = SubResource("DPITexture_ftk8o")
+HSlider/styles/grabber_area = SubResource("StyleBoxEmpty_75705")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxEmpty_6sc48")
+HSlider/styles/slider = ExtResource("8_m8g5i")
+Label/constants/outline_size = 0
+Label/fonts/font = ExtResource("1_adhqp")
+Panel/styles/panel = ExtResource("9_a7tdx")
