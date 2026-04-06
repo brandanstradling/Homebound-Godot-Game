@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c6ss5xf2uyoik" path="res://scripts/Badger.gd" id="1_hf40l"]
 [ext_resource type="TileSet" uid="uid://bhhph45dx3gho" path="res://assets/world/Main.tres" id="2_v02wp"]
-[ext_resource type="Shader" uid="uid://do56p3nn1ha8t" path="res://Outline.gdshader" id="3_847oi"]
+[ext_resource type="Shader" uid="uid://do56p3nn1ha8t" path="res://resources/Outline.gdshader" id="3_847oi"]
 [ext_resource type="Texture2D" uid="uid://fi0ntdlve7ne" path="res://assets/world/den_indicator.png" id="4_dexu5"]
 [ext_resource type="Texture2D" uid="uid://c1lx81vcqn022" path="res://assets/badger/badger_burrow.png" id="4_l2ku5"]
 [ext_resource type="Texture2D" uid="uid://civr20h57ofqh" path="res://assets/badger/badger_idle.png" id="5_wa34p"]

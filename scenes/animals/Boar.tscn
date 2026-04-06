@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bq012tvl4ka8w" path="res://scripts/Boar.gd" id="1_xq7tf"]
 [ext_resource type="TileSet" uid="uid://bhhph45dx3gho" path="res://assets/world/Main.tres" id="2_xf664"]
-[ext_resource type="Shader" uid="uid://do56p3nn1ha8t" path="res://Outline.gdshader" id="3_wqtlf"]
+[ext_resource type="Shader" uid="uid://do56p3nn1ha8t" path="res://resources/Outline.gdshader" id="3_wqtlf"]
 [ext_resource type="Texture2D" uid="uid://cydt6m5r2hmye" path="res://assets/boar/boar_idle.png" id="4_6vpyr"]
 [ext_resource type="Texture2D" uid="uid://t4ciatws8lvo" path="res://assets/boar/boar_run.png" id="5_e5vpi"]
 [ext_resource type="Texture2D" uid="uid://fi0ntdlve7ne" path="res://assets/world/den_indicator.png" id="6_5fmxa"]

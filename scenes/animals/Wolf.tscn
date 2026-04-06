@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bms6gdidyyaf6" path="res://scripts/Wolf.gd" id="1_xmti0"]
 [ext_resource type="TileSet" uid="uid://bhhph45dx3gho" path="res://assets/world/Main.tres" id="2_fw4x3"]
-[ext_resource type="Shader" uid="uid://do56p3nn1ha8t" path="res://Outline.gdshader" id="3_0rvxd"]
+[ext_resource type="Shader" uid="uid://do56p3nn1ha8t" path="res://resources/Outline.gdshader" id="3_0rvxd"]
 [ext_resource type="Texture2D" uid="uid://b67j42l1cf346" path="res://assets/wolf/wolf_howl.png" id="4_0rvxd"]
 [ext_resource type="Texture2D" uid="uid://18ta1447ieps" path="res://assets/wolf/wolf_idle.png" id="4_yi1hl"]
 [ext_resource type="Texture2D" uid="uid://cofvl5begplr2" path="res://assets/wolf/wolf_run.png" id="5_fw4x3"]
