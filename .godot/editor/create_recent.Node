@@ -1,0 +1,14 @@
+Label
+HBoxContainer
+TileMapLayer
+AudioStreamPlayer
+Panel
+VBoxContainer
+Node2D
+Control
+TileMap
+TextureRect
+Button
+GridContainer
+CenterContainer
+AnimatedSprite2D
