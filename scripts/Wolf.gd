@@ -1,17 +1,22 @@
 class_name Wolf
 extends Animal
 
+# ---- Exports ----
 @export var charge_speed: float = 8.0
+
+# ---- Lifecycle ----
 
 func _ready():
 	super()
 	play_animation("idle")
 
+# ---- Ability: Charge + Howl ----
+# Wolf charges up to 3 tiles in the facing direction, then howls to push adjacent animals.
+
 func activate():
 	if is_moving:
 		return
 
-	# Charge up to 3 tiles, stop when blocked
 	var next_pos = grid_pos + facing
 	var steps = 0
 	while steps < 3 and GridManager.is_walkable(next_pos):
@@ -20,6 +25,7 @@ func activate():
 	var target_pos = next_pos - facing
 
 	if target_pos == grid_pos:
+		play_sfx(sfx_click_low)
 		return
 
 	grid_pos = target_pos
@@ -37,12 +43,14 @@ func activate():
 		howl()
 	)
 
+# ---- Howl ----
+# Pushes all directly adjacent animals one tile away. Waits for animation before pushing.
+
 func howl():
-	# Collect adjacent animals before playing animation
 	var neighbors = []
 	for dir in [Vector2i(1,0), Vector2i(-1,0), Vector2i(0,1), Vector2i(0,-1)]:
 		var animal = GridManager.get_animal_at(grid_pos + dir)
-		if animal != null and animal != self:
+		if animal != null and animal != self and not animal.is_at_den:
 			neighbors.append({"animal": animal, "dir": dir})
 
 	if neighbors.is_empty():
@@ -50,7 +58,7 @@ func howl():
 		return
 
 	play_animation("howl")
-	# Delay push to sync with howl animation peak (adjust to match fps/frame)
+	# Delay push to sync with the howl animation peak
 	await get_tree().create_timer(0.75).timeout
 
 	for entry in neighbors:
@@ -62,6 +70,9 @@ func howl():
 			animal.grid_pos = push_target
 			var tween = create_tween()
 			tween.tween_property(animal, "global_position", GridManager.grid_to_world(push_target), 0.2)
-			tween.tween_callback(func(): animal.check_den())
+			tween.tween_callback(func():
+				GridManager.update_plates()
+				animal.check_den()
+			)
 
 	check_den()

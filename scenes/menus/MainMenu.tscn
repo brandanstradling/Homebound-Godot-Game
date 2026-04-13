@@ -1011,7 +1011,7 @@ animations = [{
 
 [sub_resource type="Theme" id="Theme_ldf1p"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhmv4"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_147xw"]
 bg_color = Color(0, 0, 0, 0.50980395)
 
 [node name="MainMenu" type="Control"]
@@ -1082,6 +1082,10 @@ text = "Settings"
 layout_mode = 2
 text = "Quit"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+bus = &"SFX"
+
 [node name="SettingsMenu" type="Control" parent="."]
 visible = false
 z_index = 10
@@ -1100,7 +1104,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_xhmv4")
+theme_override_styles/panel = SubResource("StyleBoxFlat_147xw")
 
 [node name="Panel" type="Panel" parent="SettingsMenu"]
 layout_mode = 1
@@ -1109,10 +1113,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -48.0
+offset_left = -72.0
 offset_top = -72.0
-offset_right = 48.0
-offset_bottom = 40.0
+offset_right = 72.0
+offset_bottom = 65.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -1123,48 +1127,77 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -31.0
-offset_top = -59.0
-offset_right = 31.0
-offset_bottom = 59.0
+offset_left = -60.0
+offset_top = -60.0
+offset_right = 60.0
+offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="SettingsMenu/VBoxContainer"]
 layout_mode = 2
 text = "Settings"
+horizontal_alignment = 1
 
-[node name="MasterVolumeSlider" type="HSlider" parent="SettingsMenu/VBoxContainer"]
+[node name="MasterContainer" type="HBoxContainer" parent="SettingsMenu/VBoxContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsMenu/VBoxContainer/MasterContainer"]
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
+text = "Master"
+
+[node name="MasterVolumeSlider" type="HSlider" parent="SettingsMenu/VBoxContainer/MasterContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 max_value = 1.0
 step = 0.01
 value = 0.5
 
-[node name="MusicVolumeSlider2" type="HSlider" parent="SettingsMenu/VBoxContainer"]
+[node name="MusicContainer" type="HBoxContainer" parent="SettingsMenu/VBoxContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsMenu/VBoxContainer/MusicContainer"]
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
+text = "Music  "
+
+[node name="MusicVolumeSlider2" type="HSlider" parent="SettingsMenu/VBoxContainer/MusicContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 max_value = 1.0
 step = 0.01
 value = 0.5
 
-[node name="SFXVolumeSlider" type="HSlider" parent="SettingsMenu/VBoxContainer"]
+[node name="SFXContainer" type="HBoxContainer" parent="SettingsMenu/VBoxContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsMenu/VBoxContainer/SFXContainer"]
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
+text = "SFX"
+
+[node name="SFXVolumeSlider" type="HSlider" parent="SettingsMenu/VBoxContainer/SFXContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 max_value = 1.0
 step = 0.01
 value = 0.5
 
 [node name="BackButton" type="Button" parent="SettingsMenu/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 text = "Back
 "
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-process_mode = 3
-bus = &"SFX"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
-[connection signal="value_changed" from="SettingsMenu/VBoxContainer/MasterVolumeSlider" to="." method="_on_master_volume_slider_value_changed"]
-[connection signal="value_changed" from="SettingsMenu/VBoxContainer/MusicVolumeSlider2" to="." method="_on_music_volume_slider_value_changed"]
-[connection signal="value_changed" from="SettingsMenu/VBoxContainer/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
+[connection signal="value_changed" from="SettingsMenu/VBoxContainer/MasterContainer/MasterVolumeSlider" to="." method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="SettingsMenu/VBoxContainer/MusicContainer/MusicVolumeSlider2" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="value_changed" from="SettingsMenu/VBoxContainer/SFXContainer/SFXVolumeSlider" to="." method="_on_sfx_volume_slider_value_changed"]
 [connection signal="pressed" from="SettingsMenu/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

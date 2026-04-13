@@ -1,5 +1,8 @@
 extends Node
 
+# ---- Input ----
+
+# Toggles fullscreen on the mapped input action.
 func _input(event: InputEvent):
 	if event.is_action_pressed("fullscreen"):
 		if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:

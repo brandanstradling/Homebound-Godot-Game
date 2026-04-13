@@ -1,11 +1,13 @@
 extends Control
 
+# ---- Node References ----
 @onready var grid = $LevelPanel/LevelContainer/GridContainer
-@onready var test_grid = $TestPanel/TestContainer/GridContainer
 @onready var sfx_player: AudioStreamPlayer = $AudioStreamPlayer
 
+# ---- Exports ----
 @export var sfx_click_high: AudioStream
 
+# ---- Constants ----
 const LEVEL_BUTTON = preload("res://scenes/menus/LevelButton.tscn")
 
 const TEST_LEVELS = [
@@ -15,10 +17,15 @@ const TEST_LEVELS = [
 	"res://scenes/levels/testing/WolfTest.tscn"
 ]
 
+# ---- Lifecycle ----
+
 func _ready():
 	MusicManager.play(MusicManager.music_level_select)
+	_populate_main_levels()
 
-	# Main levels
+# ---- Level Population ----
+
+func _populate_main_levels():
 	for i in range(1, GameProgress.TOTAL_LEVELS + 1):
 		var btn = LEVEL_BUTTON.instantiate()
 		btn.get_node("Checkmark").visible = GameProgress.is_completed(i)
@@ -32,21 +39,9 @@ func _ready():
 			)
 		else:
 			btn.disabled = true
-		btn.disabled = true  # TEMP: disable all levels during testing
 		grid.add_child(btn)
 
-	# Test levels
-	for path in TEST_LEVELS:
-		var btn = LEVEL_BUTTON.instantiate()
-		btn.get_node("Checkmark").visible = false
-		btn.text = path.get_file().get_basename().replace("Test", "")
-		var scene_path = path
-		btn.pressed.connect(func():
-			sfx_player.stream = sfx_click_high
-			sfx_player.play()
-			get_tree().change_scene_to_file(scene_path)
-		)
-		test_grid.add_child(btn)
+# ---- Navigation ----
 
 func _on_back_button_pressed():
 	sfx_player.stream = sfx_click_high
