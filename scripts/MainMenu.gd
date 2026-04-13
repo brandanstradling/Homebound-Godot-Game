@@ -18,6 +18,11 @@ func _ready():
 func _click():
 	sfx_player.stream = sfx_click_high
 	sfx_player.play()
+	
+func _sync_volume_sliders():
+	$SettingsMenu/VBoxContainer/MasterContainer/MasterVolumeSlider.value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
+	$SettingsMenu/VBoxContainer/MusicContainer/MusicVolumeSlider.value  = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))
+	$SettingsMenu/VBoxContainer/SFXContainer/SFXVolumeSlider.value    = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
 
 # ---- Navigation ----
 
@@ -33,6 +38,7 @@ func _on_quit_button_pressed():
 
 func _on_settings_button_pressed():
 	_click()
+	_sync_volume_sliders()
 	settings_menu.show()
 
 func _on_back_button_pressed():

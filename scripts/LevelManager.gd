@@ -150,6 +150,7 @@ func toggle_settings():
 		pause_menu.show()
 	else:
 		pause_menu.hide()
+		_sync_volume_sliders()
 		settings_menu.show()
 
 func restart_level():
@@ -177,6 +178,11 @@ func go_to_next_level():
 
 func _set_bus_volume(bus_name: String, value: float):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index(bus_name), linear_to_db(value))
+
+func _sync_volume_sliders():
+	$"../UI/SettingsMenu/VBoxContainer/MasterContainer/MasterVolumeSlider".value = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master")))
+	$"../UI/SettingsMenu/VBoxContainer/MusicContainer/MusicVolumeSlider".value  = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Music")))
+	$"../UI/SettingsMenu/VBoxContainer/SFXContainer/SFXVolumeSlider".value    = db_to_linear(AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX")))
 
 # ---- Signal Callbacks ----
 
